@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shadi Nama Studio - Mirzapur, Munger | Book Now</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .location-section {
+            background: #f8f9fa;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .address {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .address h2 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .address p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #555;
+        }
+
+        .map-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .map-placeholder {
+            height: 250px;
+            background: linear-gradient(45deg, #e3f2fd, #bbdefb);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            color: #1976d2;
+            font-weight: bold;
+            border: 3px dashed #2196f3;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-placeholder::before {
+            content: "📍 Location";
+            font-size: 2rem;
+            position: absolute;
+        }
+
+        .services {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 3rem;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .service-card input[type="radio"] {
+            display: none;
+        }
+
+        .service-card input[type="radio"]:checked + .service-content {
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+
+        /* Booking Form Styles */
+        .booking-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .booking-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .booking-subtitle {
+            text-align: center;
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .booking-form-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255,255,255,0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.9);
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.5);
+            transform: scale(1.02);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .package-info {
+            background: rgba(255,255,255,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .total-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #ffd700;
+            margin-top: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 1.5rem;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(255,107,107,0.4);
+        }
+
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 2rem;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .contact {
+            background: #333;
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .phone, .whatsapp {
+            display: inline-block;
+            background: #ff6b6b;
+            padding: 1rem 2rem;
+            margin: 0 1rem;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .phone:hover, .whatsapp:hover {
+            background: #feca57;
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: #222;
+            color: #ccc;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2rem; }
+            .form-row { grid-template-columns: 1fr; }
+            .booking-form-container { padding: 2rem; }
+            .map-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>💍 Shadi Nama Studio</h1>
+            <p>Premium Wedding Photography & Cinematography | Bari, Mirzapur, Munger</p>
+        </div>
+    </header>
+
+    <section class="location-section">
+        <div class="container">
+            <div class="address">
+                <h2>📍 Shadi Nama Studio</h2>
+                <p>Bari, Mirzapur, Sandalpur</p>
+                <p>Munger, Bihar 811201</p>
+            </div>
+            
+            <div class="map-grid">
+                <div class="map-placeholder">Main Studio</div>
+                <div class="map-placeholder">Outdoor Location</div>
+                <div class="map-placeholder">Event Venue</div>
+                <div class="map-placeholder">Client Meetup</div>
+                <div class="map-placeholder">Backup Studio</div>
+                <div class="map-placeholder">Special Events</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <h2>🎯 Choose Your Package</h2>
+            <div class="service-grid">
+                <label>
+                    <div class="service-card">
+                        <input type="radio" name="package" value="basic" id="basic" checked>
+                        <div class="service-content">
+                            <div>📸</div>
+                            <h3>Basic Package</h3>
+                            <p>8 Hours Coverage<br>200+ Photos<br>1 Photographer</p>
+                            <div class="price">₹25,000</div>
+                        </div>
+                    </div>
+                </label>
+                
+                <label>
+                    <div class="service-card">
+                        <input type="radio" name="package" value="premium" id="premium">
+                        <div class="service-content">
+                            <div>🎥</div>
+                            <h3>Premium Package</h3>
+                            <p>12 Hours Coverage<br>400+ Photos<br>2 Photographers + Videographer</p>
+                            <div class="price">₹45,000</div>
+                        </div>
+                    </div>
+                </label>
+                
+                <label>
+                    <div class="service-card">
+                        <input type="radio" name="package" value="luxury" id="luxury">
+                        <div class="service-content">
+                            <div>✨</div>
+                            <h3>Luxury Package</h3>
+                            <p>Full Day Coverage<br>Unlimited Photos<br>Drone Shots + Cinematic Film</p>
+                            <div class="price">₹75,000</div>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-section">
+        <div class="container">
+            <h2>📅 Book Your Wedding Now</h2>
+            <p class="booking-subtitle">Fill the form below and our team will contact you within 2 hours!</p>
+            
+            <form id="bookingForm" class="booking-form-container">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Wedding Date *</label>
+                        <input type="date" id="weddingDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Package</label>
+                        <input type="text" id="selectedPackage" readonly>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Venue Location</label>
+                        <input type="text" id="venue" placeholder="Marriage hall / home address">
+                    </div>
+                    <div class="form-group">
+                        <label>Guest Count</label>
+                        <select id="guestCount">
+                            <option value="">Select approximate guests</option>
+                            <option value="100-200">100-200</option>
+                            <option value="200-400">200-400</option>
+                            <option value="400+">400+</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label>Special Requirements</label>
+                    <textarea id="requirements" placeholder="Any special requests, timings, or additional services..."></textarea>
+                </div>
+                
+                <div class="package-info">
+                    <div>Total Package Price: <span class="total-price" id="totalPrice">₹25,000</span></div>
+                    <div>✅ Free Consultation | ✅ Album Designing | ✅ Fast Delivery</div>
+                </div>
+                
+                <button type="submit" class="submit-btn">🎉 Book Now & Secure Your Date!</button>
+                
+                <div id="successMessage" class="success-message">
+                    <h3>🎊 Booking Request Sent Successfully!</h3>
+                    <p>Our team will call you within <strong>2 hours</strong> to confirm your booking.</p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <h2>📞 Quick Contact</h2>
+            <a href="tel:+919431234567" class="phone">Call Now</a>
+            <a href="https://wa.me/919431234567" class="whatsapp">WhatsApp</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shadi Nama Studio - Bari, Mirzapur, Munger, Bihar. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Package selection and price calculation
+        const packages = {
+            basic: 25000,
+            premium: 45000,
+            luxury: 75000
+        };
+
+        document.querySelectorAll('input[name="package"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const packageName = this.value;
+                document.getElementById('selectedPackage').value = packageName.charAt(0).toUpperCase() + packageName.slice(1) + ' Package';
+                document.getElementById('totalPrice').textContent = '₹' + packages[packageName].toLocaleString();
+            });
+        });
+
+        // Form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                weddingDate: document.getElementById('weddingDate').value,
+                package: document.getElementById('selectedPackage').value,
+                venue: document.getElementById('venue').value,
+                guestCount: document.getElementById('guestCount').value,
+                requirements: document.getElementById('requirements').value,
+                totalPrice: document.getElementById('totalPrice').textContent
+            };
+
+            // WhatsApp integration - sends form data to your WhatsApp
+            const message = `🎉 *New Wedding Booking Request*\n\n` +
+                          `👰‍♀️ Bride/Groom: ${formData.name}\n` +
+                          `📱 Phone: ${formData.phone}\n` +
+                          `💒 Wedding Date: ${formData.weddingDate}\n` +
+                          `📦 Package: ${formData.package}\n` +
+                          `🏛️ Venue: ${formData.venue || 'TBD'}\n` +
+                          `👥 Guests: ${formData.guestCount || 'TBD'}\n` +
+                          `💰 Price: ${formData.totalPrice}\n` +
+                          `📝 Requirements: ${formData.requirements || 'None'}`;
+
+            const whatsappNumber = '919431234567'; // Replace with your number
+            const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+            
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            document.querySelector('.booking-form-container').scrollIntoView({ behavior: 'smooth' });
+            
+            // Optional: Open WhatsApp (uncomment if desired)
+            // window.open(whatsappURL, '_blank');
+            
+            // Reset form after 5 seconds
+            setTimeout(() => {
+                this.reset();
+                document.getElementById('selectedPackage').value = 'Basic Package';
+                document.getElementById('totalPrice').textContent = '₹25,000';
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+
+        // Set minimum date to today
+        document.getElementById('weddingDate').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+</html>
